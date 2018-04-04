@@ -4,9 +4,8 @@ WORKDIR /usr/src/app
 
 # Install required Linux packages
 RUN apt-get update && apt-get install -yq \
+ gcc \
  wget \
- python2.7 \
- python-pip \
  sudo && \
  apt-get clean && rm -rf /var/lib/apt/lists/*
 
