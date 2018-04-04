@@ -2,22 +2,28 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:7-slim
 # Defines our working directory in container
 WORKDIR /usr/src/app
 
-RUN apt-get update && \
-    apt-get install -yq wget && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install required Linux packages
+RUN apt-get update && apt-get install -yq \
+ wget \
+ nano \
+ python \
+ python-dev \
+ python-pip \
+ python-serial \
+ sudo && \
+ apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p static && \
-    wget https://code.jquery.com/jquery-1.12.0.min.js -O static/jquery-1.12.0.min.js && \
-    wget https://code.highcharts.com/highcharts.js -O static/highcharts.js
+# Install required Python packages
+RUN pip install --upgrade pip
 
-# Copies the package.json first for better cache on later pushes
-COPY package.json package.json
+# Install required Python packages
+RUN pip install -U \
+ Flask \
+ Flask-WTF \
+ zerorpc
 
-# This install npm dependencies on the resin.io build server,
-# making sure to clean up the artifacts it creates in order to reduce the image size.
-RUN JOBS=MAX npm install --production
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
 
 # server.js will run when container starts up on the device
-CMD ["npm", "start"]
+CMD ["python", "front.py"]
