@@ -3,7 +3,8 @@ services:
   frontend:
     container_name: front
     build: ./frontend
-    expose:
-      - "80"
+    ports:
+      - 5001:80
+
 
 
