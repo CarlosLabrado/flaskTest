@@ -1,10 +1,12 @@
 version: '2'
 services:
   frontend:
+    container_name: front
     build: ./frontend
     expose:
       - "80"
   data:
+    container_name: back
     build: ./data
     expose:
       - "8080"
