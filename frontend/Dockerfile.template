@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 # Install required Linux packages
 RUN apt-get update && apt-get install -yq \
  gcc \
- wget \
+ python-dev \
  sudo && \
  apt-get clean && rm -rf /var/lib/apt/lists/*
 
