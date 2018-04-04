@@ -8,5 +8,4 @@ services:
   data:
     container_name: back
     build: ./data
-    expose:
-      - "8080"
+
