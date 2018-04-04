@@ -6,6 +6,9 @@ WORKDIR /usr/src/app
 # Install required Linux packages
 RUN apt-get update && apt-get install -yq \
  gcc \
+ libboost-python-dev \
+ libcurl4-openssl-dev \
+ libssl-dev \
  python-dev \
  nano \
  sudo && \
