@@ -30,6 +30,8 @@ def hello():
             # Save the comment here.
             flash('Thanks for registration ' + name)
         else:
+            print(form.errors)
+            print(form.validate())
             flash('Error: All the form fields are required. ')
 
     return render_template('hello.html', form=form)
