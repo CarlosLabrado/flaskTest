@@ -1,24 +1,14 @@
 version: '2'
 services:
   frontend:
-    container_name: front
+    container_name: frontend
     build: ./frontend
     ports:
-      - 5001:80
-    links:
-      - data
-    networks:
-      - backend
+      - "5001:80"
   data:
-    container_name: back
+    container_name: data
     build: ./data
     ports:
-      - 4242:4242
-    networks:
-      - backend
-networks:
-  backend:
-    driver: bridge
-
+      - "4242:4242"
 
 
