@@ -10,8 +10,9 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
 class ReusableForm(Form):
     name = TextField('Name:', validators=[validators.required()])
-    email = TextField('Email:', validators=[validators.required(), validators.Length(min=6, max=35)])
-    password = TextField('Password:', validators=[validators.required(), validators.Length(min=3, max=35)])
+    azure_id = TextField('AzureId:', validators=[validators.required(), validators.Length(min=6, max=35)])
+    connection_string = TextField('ConnectionString:',
+                                  validators=[validators.required(), validators.Length(min=3, max=35)])
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -21,9 +22,9 @@ def hello():
     print(form.errors)
     if request.method == 'POST':
         name = request.form['name']
-        password = request.form['password']
-        email = request.form['email']
-        print(name, " ", email, " ", password)
+        azure_id = request.form['azureId']
+        connection_string = request.form['connectionString']
+        print(name, " ", azure_id, " ", connection_string)
 
         if form.validate():
             # Save the comment here.

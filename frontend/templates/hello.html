@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
-        <title>Reusable Form Demo</title>
+        <title>PetrologTest</title>
         <link rel="stylesheet" media="screen" href="static/bootstrap.min.css">
         <link rel="stylesheet" href="static/bootstrap-theme.min.css">
        <meta name="viewport" content = "width=device-width, initial-scale=1.0">
@@ -13,22 +13,23 @@
 <div class="container">
 
 
-  <h2>Flask Web Form</h2>
+    <h2>Petrolog OnBoarding</h2>
   <form  action="" method="post" role="form">
     {{ form.csrf }}
     <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" name="name" placeholder="What's your name?">
+        <label for="name">Well Name:</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="What's the well name?">
       <br>
-      <label for="email">Email:</label>
-      <input type="text" class="form-control" id="email" name="email" placeholder="Your email will be used to contact you.">
+        <label for="azureId">Azure Id:</label>
+        <input type="text" class="form-control" id="azureId" name="azureId" placeholder="1XXXXX">
       <br>
-      <label for="password">Password:</label>
-      <input type="password" class="form-control" id="password" name="password" placeholder="Enter a password.">
+        <label for="connectionString">Connection String:</label>
+        <input type="text" class="form-control" id="connectionString" name="connectionString"
+               placeholder="Enter a valid Connection String.">
 
 
     </div>
-    <button type="submit" class="btn btn-success">Sign Up</button>
+      <button type="submit" class="btn btn-success">Register</button>
   </form>
 
   <br>
