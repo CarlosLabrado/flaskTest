@@ -6,6 +6,7 @@ services:
     ports:
       - 5001:80
   data:
+    container_name: back
     build: ./data
     ports:
       - 4242
