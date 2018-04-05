@@ -1,0 +1,14 @@
+azure:
+  id: 999999
+  connection_string: "HostName=petrolog.azure-devices.net;DeviceId=999999;SharedAccessKey=ndBaI5ifXPK0elTuUcUFLDNIXL1rKFxyXQvO+cor2ks="
+  polling_rate: 10
+  dyna_rate: 600
+  timeout_tries: 10
+defaults:
+  id: 999999
+  connection_string: "HostName=petrolog.azure-devices.net;DeviceId=999999;SharedAccessKey=ndBaI5ifXPK0elTuUcUFLDNIXL1rKFxyXQvO+cor2ks="
+  watchdog_rate: 5
+  version: 4.0.0
+on_boarding:
+  do_setup: 1
+  led_id: "33131333"
