@@ -22,8 +22,8 @@ def hello():
     print(form.errors)
     if request.method == 'POST':
         name = request.form['name']
-        azure_id = request.form['azureId']
-        connection_string = request.form['connectionString']
+        azure_id = request.form['azure_id']
+        connection_string = request.form['connection_string']
         print(name, " ", azure_id, " ", connection_string)
 
         if form.validate():
