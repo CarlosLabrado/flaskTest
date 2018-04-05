@@ -5,6 +5,10 @@ services:
     build: ./frontend
     ports:
       - 5001:80
+  data:
+    build: ./data
+    ports:
+      - 4242
 
 
 
