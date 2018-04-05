@@ -4,13 +4,13 @@ import zerorpc
 
 class Setup(object):
 
-    def create_yaml(self, new_id, new_connection_string):
+    def write_to_yaml(self, new_id, new_connection_string):
         file_name = '/data/env_vars.yaml'
 
         stream = open(file_name, 'r')
         settings = yaml.load(stream)
 
-        settings['azure']['id'] = int(new_id)
+        settings['azure']['id'] = int(new_id)  # we force casting to int
         settings['azure']['connection_string'] = new_connection_string
         settings['azure']['polling_rate'] = 10
         settings['on_boarding']['do_setup'] = 0

@@ -28,12 +28,13 @@ def hello():
 
         if form.validate():
             # Save the comment here.
-            flash('Thanks for registration ' + name)
+            flash('Thanks for the registration of ' + name)
+            # We now write the data to the Data container
             import zerorpc
 
             c = zerorpc.Client()
             c.connect("tcp://data:4242")
-            print(c.create_yaml(azure_id, connection_string))
+            print(c.write_to_yaml(azure_id, connection_string))
         else:
             print(form.errors)
             flash('Error: All the form fields are required. ')
