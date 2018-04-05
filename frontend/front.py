@@ -1,5 +1,5 @@
 from flask import Flask, render_template, flash, request
-from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
+from wtforms import Form, StringField, validators, StringField, SubmitField
 
 # App config.
 DEBUG = True
@@ -9,9 +9,9 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
 
 class ReusableForm(Form):
-    name = TextField('Name:', validators=[validators.required()])
-    azure_id = TextField('AzureId:', validators=[validators.required(), validators.Length(min=6, max=35)])
-    connection_string = TextField('ConnectionString:',
+    name = StringField('A:', validators=[validators.required()])
+    azure_id = StringField('B:', validators=[validators.required(), validators.Length(min=6, max=35)])
+    connection_string = StringField('C:',
                                   validators=[validators.required(), validators.Length(min=3, max=35)])
 
 
