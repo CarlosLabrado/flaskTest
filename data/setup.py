@@ -10,7 +10,7 @@ class Setup(object):
         stream = open(file_name, 'r')
         settings = yaml.load(stream)
 
-        settings['azure']['id'] = new_id
+        settings['azure']['id'] = int(new_id)
         settings['azure']['connection_string'] = new_connection_string
         settings['azure']['polling_rate'] = 10
         settings['on_boarding']['do_setup'] = 0
