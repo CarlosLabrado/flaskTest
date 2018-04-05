@@ -10,8 +10,8 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
 class ReusableForm(Form):
     name = StringField('name:', validators=[validators.required()])
-    azure_id = StringField('azureId', validators=[validators.required(), validators.Length(min=6, max=35)])
-    connection_string = StringField('connectionString',
+    azure_id = StringField('azure_id', validators=[validators.required(), validators.Length(min=6, max=35)])
+    connection_string = StringField('connection_string',
                                     validators=[validators.required(), validators.Length(min=3, max=35)])
 
 
@@ -31,7 +31,6 @@ def hello():
             flash('Thanks for registration ' + name)
         else:
             print(form.errors)
-            print(form.validate())
             flash('Error: All the form fields are required. ')
 
     return render_template('hello.html', form=form)
