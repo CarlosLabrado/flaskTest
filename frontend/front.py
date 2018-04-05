@@ -10,7 +10,7 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
 class ReusableForm(Form):
     name = TextField('Name:', validators=[validators.required()])
-    azure_id = TextField('Azure Id:', validators=[validators.required(), validators.Length(min=6, max=35)])
+    azure_id = TextField('AzureId:', validators=[validators.required(), validators.Length(min=6, max=35)])
     connection_string = TextField('ConnectionString:',
                                   validators=[validators.required(), validators.Length(min=3, max=35)])
 
