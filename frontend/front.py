@@ -11,8 +11,7 @@ app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 class ReusableForm(Form):
     name = StringField('A:', validators=[validators.required()])
     azure_id = StringField('B:', validators=[validators.required(), validators.Length(min=6, max=35)])
-    connection_string = StringField('C:',
-                                  validators=[validators.required(), validators.Length(min=3, max=35)])
+    connection_string = StringField('C:', validators=[validators.required(), validators.Length(min=3, max=35)])
 
 
 @app.route("/", methods=['GET', 'POST'])
