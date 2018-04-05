@@ -33,7 +33,7 @@ def hello():
 
             c = zerorpc.Client()
             c.connect("tcp://data:4242")
-            print(c.add_man("carlos"))
+            print(c.create_yaml(azure_id, connection_string))
         else:
             print(form.errors)
             flash('Error: All the form fields are required. ')
