@@ -24,9 +24,9 @@ function requestData() {
 }
 
 $(document).ready(function () {
-    chart = new Highcharts.Chart({
+    chart = new Highcharts.Chart('container', {
         chart: {
-            renderTo: 'data-container',
+            renderTo: 'container',
             margin: [70, 50, 60, 80],
             defaultSeriesType: 'scatter',
             events: {

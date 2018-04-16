@@ -19,7 +19,7 @@ class ReusableForm(Form):
 
 
 class Thing:
-    data_set = [[80, 80], [128, 44], [67, 22], [34, 4]]
+    data_set = [[80, 80], [128, 44], [67, 22], [34, 4], [70, 60], [66, 44]]
     counter = 0
 
 
@@ -58,6 +58,7 @@ def stats():
 @app.route('/live-data')
 def live_data():
     # Create a PHP array and echo it as JSON
+    print(Thing.counter)
     data = Thing.data_set[Thing.counter]
     if Thing.counter < len(Thing.data_set):
         Thing.counter = Thing.counter + 1
