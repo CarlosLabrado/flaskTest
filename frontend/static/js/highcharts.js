@@ -18,6 +18,18 @@ function requestData() {
 
             // call it again after one second
             setTimeout(requestData, 1000);
+            setTimeout(clearData, 10000);
+        },
+        cache: false
+    });
+}
+
+function clearData() {
+    $.ajax({
+        url: '/live-data',
+        success: function () {
+            chart.series[0].clear();
+
         },
         cache: false
     });
@@ -70,7 +82,7 @@ $(document).ready(function () {
             }
         },
         series: [{
-            name: 'Random data',
+            name: 'Dyna data',
             data: []
         }]
     });
