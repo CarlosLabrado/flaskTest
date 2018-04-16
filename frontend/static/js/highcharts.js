@@ -8,12 +8,13 @@ function requestData() {
     $.ajax({
         url: '/live-data',
         success: function (point) {
-            var series = chart.series[0],
-                shift = series.data.length > 20; // shift if the series is
-                                                 // longer than 20
+            // var series = chart.series[0],
+            //     shift = series.data.length > 20; // shift if the series is
+            //                                      // longer than 20
 
             // add the point
-            chart.series[0].addPoint(point, true, shift);
+            // chart.series[0].addPoint(point, true, shift);
+            chart.series[0].addPoint(point);
 
             // call it again after one second
             setTimeout(requestData, 1000);
@@ -26,7 +27,8 @@ $(document).ready(function () {
     chart = new Highcharts.Chart({
         chart: {
             renderTo: 'data-container',
-            defaultSeriesType: 'spline',
+            margin: [70, 50, 60, 80],
+            defaultSeriesType: 'scatter',
             events: {
                 load: requestData
             }
@@ -35,7 +37,6 @@ $(document).ready(function () {
             text: 'Live random data'
         },
         xAxis: {
-            type: 'datetime',
             tickPixelInterval: 150,
             maxZoom: 20 * 1000
         },
@@ -45,6 +46,16 @@ $(document).ready(function () {
             title: {
                 text: 'Value',
                 margin: 80
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        plotOptions: {
+            series: {
+                lineWidth: 1,
             }
         },
         series: [{
