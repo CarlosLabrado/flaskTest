@@ -22,6 +22,7 @@ class Thing:
     data_set = [[80, 80], [128, 44], [67, 22], [34, 4]]
     counter = 0
 
+
 @app.route("/", methods=['GET', 'POST'])
 def hello():
     form = ReusableForm(request.form)
@@ -58,11 +59,14 @@ def stats():
 def live_data():
     # Create a PHP array and echo it as JSON
     data = Thing.data_set[Thing.counter]
-    if Thing.counter <= len(Thing.data_set):
+    if Thing.counter < len(Thing.data_set):
         Thing.counter = Thing.counter + 1
+    else:
+        Thing.counter = 0
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
     return response
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True)

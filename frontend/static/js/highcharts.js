@@ -37,21 +37,29 @@ $(document).ready(function () {
             text: 'Live random data'
         },
         xAxis: {
-            tickPixelInterval: 150,
-            maxZoom: 20 * 1000
-        },
-        yAxis: {
+            gridLineWidth: 1,
             minPadding: 0.2,
             maxPadding: 0.2,
+            maxZoom: 60
+        },
+        yAxis: {
             title: {
-                text: 'Value',
-                margin: 80
+                text: 'Value'
             },
+            minPadding: 0.2,
+            maxPadding: 0.2,
+            maxZoom: 60,
             plotLines: [{
                 value: 0,
                 width: 1,
                 color: '#808080'
             }]
+        },
+        legend: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
         },
         plotOptions: {
             series: {
