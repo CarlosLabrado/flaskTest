@@ -1,4 +1,7 @@
-from flask import Flask, render_template, flash, request
+import json
+from time import time
+from random import random
+from flask import Flask, render_template, flash, request, make_response
 from wtforms import Form, StringField, validators, StringField, SubmitField
 
 # App config.
@@ -42,10 +45,18 @@ def hello():
     return render_template('hello.html', form=form)
 
 
-@app.route("/stats", methods=['GET', 'POST'])
+@app.route("/stats")
 def stats():
-    return render_template('stats.html')
+    return render_template('stats.html', data='test')
 
+
+@app.route('/live-data')
+def live_data():
+    # Create a PHP array and echo it as JSON
+    data = [time() * 1000, random() * 100]
+    response = make_response(json.dumps(data))
+    response.content_type = 'application/json'
+    return response
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True)
