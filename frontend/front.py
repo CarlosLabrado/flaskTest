@@ -42,5 +42,10 @@ def hello():
     return render_template('hello.html', form=form)
 
 
+@app.route("/stats", methods=['GET', 'POST'])
+def stats():
+    return render_template('stats.html')
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True)
