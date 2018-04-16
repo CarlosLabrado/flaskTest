@@ -18,11 +18,6 @@ class ReusableForm(Form):
                                     validators=[validators.required(), validators.Length(min=3, max=35)])
 
 
-class Thing:
-    data_set = [[80, 80], [128, 44], [67, 22], [34, 4], [70, 60], [66, 44]]
-    counter = 0
-
-
 @app.route("/", methods=['GET', 'POST'])
 def hello():
     form = ReusableForm(request.form)
@@ -58,12 +53,7 @@ def stats():
 @app.route('/live-data')
 def live_data():
     # Create a PHP array and echo it as JSON
-    print(Thing.counter)
-    data = Thing.data_set[Thing.counter]
-    if Thing.counter < len(Thing.data_set):
-        Thing.counter = Thing.counter + 1
-    else:
-        Thing.counter = 0
+    data = [random() * 100, random() * 100]
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
     return response
