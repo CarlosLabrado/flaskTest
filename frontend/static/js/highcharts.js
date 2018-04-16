@@ -34,9 +34,12 @@ $(document).ready(function () {
             }
         },
         title: {
-            text: 'Live random data'
+            text: 'Live petrolog data'
         },
         xAxis: {
+            title: {
+                text: 'Position'
+            },
             gridLineWidth: 1,
             minPadding: 0.2,
             maxPadding: 0.2,
@@ -44,7 +47,7 @@ $(document).ready(function () {
         },
         yAxis: {
             title: {
-                text: 'Value'
+                text: 'Load'
             },
             minPadding: 0.2,
             maxPadding: 0.2,
