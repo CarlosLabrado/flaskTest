@@ -36,7 +36,7 @@ def hello():
             import zerorpc
 
             c = zerorpc.Client()
-            c.connect("tcp://data:4242")
+            c.connect("tcp://data:4242")  # "data" is the containers name
             print(c.write_to_yaml(azure_id, connection_string))
         else:
             print(form.errors)
@@ -53,7 +53,11 @@ def stats():
 @app.route('/live-data')
 def live_data():
     # Create a PHP array and echo it as JSON
-    data = [random() * 100, random() * 100]
+    import zerorpc
+
+    c = zerorpc.Client()
+    c.connect("tcp://data:4242")
+    data = c.get_dyna_point()
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
     return response

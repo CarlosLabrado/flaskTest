@@ -1,5 +1,6 @@
 import yaml
 import zerorpc
+from random import random
 
 
 class Setup(object):
@@ -17,6 +18,10 @@ class Setup(object):
         with open(file_name, 'w') as yaml_file:
             yaml_file.write(yaml.safe_dump(settings, default_flow_style=False))
         print('setup: successful on boarding process')
+
+    def get_dyna_point(self):
+        data = [random() * 100, random() * 100]
+        return data
 
 
 s = zerorpc.Server(Setup())

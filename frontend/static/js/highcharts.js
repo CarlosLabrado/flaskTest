@@ -72,7 +72,7 @@ $(document).ready(function () {
         },
         plotOptions: {
             series: {
-                lineWidth: 1,
+                lineWidth: 2,
             }
         },
         series: [{
