@@ -21,6 +21,7 @@ function requestData() {
             if (times > 9) {
                 while (chart.series.length > 0)
                     chart.series[0].remove(false);
+                times = 0;
             }
             // call it again after one second
             setTimeout(requestData, 1000);
