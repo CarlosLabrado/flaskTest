@@ -1,4 +1,5 @@
 var chart;
+var times = 0;
 
 /**
  * Request data from the server, add it to the graph and set a timeout
@@ -18,22 +19,16 @@ function requestData() {
 
             // call it again after one second
             setTimeout(requestData, 1000);
-            setTimeout(clearData, 10000);
+            times = times + 1;
+            if (times > 9) {
+                while (chart.series.length > 0)
+                    chart.series[0].remove(true);
+            }
         },
         cache: false
     });
 }
 
-function clearData() {
-    $.ajax({
-        url: '/live-data',
-        success: function () {
-            chart.series[0].clear();
-
-        },
-        cache: false
-    });
-}
 
 $(document).ready(function () {
     chart = new Highcharts.Chart('container', {
