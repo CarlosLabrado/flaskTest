@@ -17,13 +17,13 @@ function requestData() {
             // chart.series[0].addPoint(point, true, shift);
             chart.series[0].addPoint(point);
 
-            // call it again after one second
-            setTimeout(requestData, 1000);
             times = times + 1;
             if (times > 9) {
                 while (chart.series.length > 0)
                     chart.series[0].remove(false);
             }
+            // call it again after one second
+            setTimeout(requestData, 1000);
         },
         cache: false
     });
