@@ -22,7 +22,7 @@ function requestData() {
             times = times + 1;
             if (times > 9) {
                 while (chart.series.length > 0)
-                    chart.series[0].remove(true);
+                    chart.series[0].remove(false);
             }
         },
         cache: false
