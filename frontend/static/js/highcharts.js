@@ -1,5 +1,6 @@
 var chart;
-var times = 0;
+var counter = 0;
+var maxPoints = 10;
 
 /**
  * Request data from the server, add it to the graph and set a timeout
@@ -16,7 +17,10 @@ function requestData() {
             // add the point
             // chart.series[0].addPoint(point, true, shift);
             chart.series[0].addPoint(point);
-
+            counter = counter + 1;
+            if (counter > maxPoints - 1) {
+                chart.series[0].data[0].remove();
+            }
             // call it again after one second
             setTimeout(requestData, 1000);
         },
@@ -69,8 +73,7 @@ $(document).ready(function () {
         plotOptions: {
             series: {
                 lineWidth: 1,
-            },
-            threshold: 10
+            }
         },
         series: [{
             name: 'Dyna data',
