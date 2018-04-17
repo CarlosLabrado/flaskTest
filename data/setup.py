@@ -23,6 +23,15 @@ class Setup(object):
         data = [random() * 100, random() * 100]
         return data
 
+    def get_status(self):
+        status = {'well_status': 'On',
+                  'automatic': 'Yes',
+                  'percent_fillage': random() * 100,
+                  'run_time': random() * 100,
+                  'strokes_this': random() * 1000,
+                  'strokes_last': random() * 10}
+        return status
+
 
 s = zerorpc.Server(Setup())
 s.bind("tcp://0.0.0.0:4242")

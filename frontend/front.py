@@ -47,7 +47,12 @@ def hello():
 
 @app.route("/stats")
 def stats():
-    return render_template('stats.html', data='test')
+    import zerorpc
+
+    c = zerorpc.Client()
+    c.connect("tcp://data:4242")
+    status = c.get_status()
+    return render_template('stats.html', data='test', status=status)
 
 
 @app.route('/live-data')
