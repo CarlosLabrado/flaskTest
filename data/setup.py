@@ -26,10 +26,10 @@ class Setup(object):
     def get_status(self):
         status = {'well_status': 'On',
                   'automatic': 'Yes',
-                  'percent_fillage': random() * 100,
-                  'run_time': random() * 100,
-                  'strokes_this': random() * 1000,
-                  'strokes_last': random() * 10}
+                  'percent_fillage': int(random() * 100),
+                  'run_time': int(random() * 100),
+                  'strokes_this': int(random() * 1000),
+                  'strokes_last': int(random() * 10)}
         return status
 
 
