@@ -47,8 +47,6 @@ def hello():
 def stats():
     client = ZeroClient().get_instance().get_client()
 
-    print(client)
-
     status = client.get_status()
     return render_template('stats.html', data='test', status=status)
 
@@ -57,8 +55,6 @@ def stats():
 def live_data():
     # Create a PHP array and echo it as JSON
     client = ZeroClient().get_instance().get_client()
-
-    print(client)
 
     data = client.get_dyna_point()
 
