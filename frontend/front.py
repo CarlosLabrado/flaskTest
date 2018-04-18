@@ -1,7 +1,7 @@
 import json
 from flask import Flask, render_template, flash, request, make_response
 from wtforms import Form, StringField, validators, StringField, SubmitField
-import zerorpc
+from zerorpc_client import ZerorpcClient
 
 # App config.
 DEBUG = True
@@ -17,16 +17,7 @@ class ReusableForm(Form):
                                     validators=[validators.required(), validators.Length(min=3, max=35)])
 
 
-class ZerorpcClient:
-    def get_client(self):
-        c = zerorpc.Client()
-        c.connect("tcp://data:4242")  # "data" is the containers name
-
-        return c
-
-
-client_object = ZerorpcClient()
-client = client_object.get_client()
+client_object = ZerorpcClient().get_state()
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -45,7 +36,7 @@ def hello():
             flash('Thanks for the registration of ' + name)
             # We now write the data to the Data container
 
-            print(client.write_to_yaml(azure_id, connection_string))
+            print(client_object.write_to_yaml(azure_id, connection_string))
         else:
             print(form.errors)
             flash('Error: All the form fields are required. ')
@@ -55,15 +46,16 @@ def hello():
 
 @app.route("/stats")
 def stats():
-    status = client.get_status()
+    status = client_object.get_status()
     return render_template('stats.html', data='test', status=status)
 
 
 @app.route('/live-data')
 def live_data():
     # Create a PHP array and echo it as JSON
+    print(client_object)
 
-    data = client.get_dyna_point()
+    data = client_object.get_dyna_point()
 
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
