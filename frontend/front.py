@@ -33,7 +33,7 @@ def hello():
             flash('Thanks for the registration of ' + name)
             # We now write the data to the Data container
 
-            client = ZeroClient().getInstance()
+            client = ZeroClient().get_instance().get_client()
 
             print(client.write_to_yaml(azure_id, connection_string))
         else:
@@ -45,7 +45,7 @@ def hello():
 
 @app.route("/stats")
 def stats():
-    client = ZeroClient().getInstance()
+    client = ZeroClient().get_instance().get_client()
 
     print(client)
 
@@ -56,7 +56,7 @@ def stats():
 @app.route('/live-data')
 def live_data():
     # Create a PHP array and echo it as JSON
-    client = ZeroClient().getInstance()
+    client = ZeroClient().get_instance().get_client()
 
     print(client)
 

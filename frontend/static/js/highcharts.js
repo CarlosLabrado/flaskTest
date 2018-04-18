@@ -22,7 +22,7 @@ function requestData() {
                 chart.series[0].data[0].remove();
             }
             // call it again after one second
-            setTimeout(requestData, 1000);
+            setTimeout(requestData, 200);
         },
         cache: false
     });
