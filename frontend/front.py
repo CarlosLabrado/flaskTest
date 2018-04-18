@@ -65,7 +65,6 @@ def live_data():
 
     data = client.get_dyna_point()
 
-    print('client id {0}'.format(client))
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
     return response
