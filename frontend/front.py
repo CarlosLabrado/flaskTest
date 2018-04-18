@@ -1,6 +1,4 @@
 import json
-from time import time
-from random import random
 from flask import Flask, render_template, flash, request, make_response
 from wtforms import Form, StringField, validators, StringField, SubmitField
 import zerorpc
@@ -21,10 +19,10 @@ class ReusableForm(Form):
 
 class ZerorpcClient:
     def get_client(self):
-        client = zerorpc.Client()
-        client.connect("tcp://data:4242")  # "data" is the containers name
+        c = zerorpc.Client()
+        c.connect("tcp://data:4242")  # "data" is the containers name
 
-        return client
+        return c
 
 
 client_object = ZerorpcClient()
