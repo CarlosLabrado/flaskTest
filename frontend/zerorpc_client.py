@@ -16,9 +16,7 @@ class ZeroClient:
 
     def __init__(self):
         """ Virtually private constructor. """
-        if ZeroClient.__instance is not None:
-            raise Exception("This class is a singleton!")
-        else:
+        if ZeroClient.__instance is None:
             ZeroClient.__instance = self
             self.c = zerorpc.Client()
             self.c.connect("tcp://data:4242")  # "data" is the containers name
