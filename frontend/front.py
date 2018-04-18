@@ -17,9 +17,6 @@ class ReusableForm(Form):
                                     validators=[validators.required(), validators.Length(min=3, max=35)])
 
 
-client_object = ZerorpcClient().get_state()
-
-
 @app.route("/", methods=['GET', 'POST'])
 def hello():
     form = ReusableForm(request.form)
@@ -36,7 +33,9 @@ def hello():
             flash('Thanks for the registration of ' + name)
             # We now write the data to the Data container
 
-            print(client_object.write_to_yaml(azure_id, connection_string))
+            client = ZerorpcClient().get_state()
+
+            print(client.write_to_yaml(azure_id, connection_string))
         else:
             print(form.errors)
             flash('Error: All the form fields are required. ')
@@ -46,16 +45,22 @@ def hello():
 
 @app.route("/stats")
 def stats():
-    status = client_object.get_status()
+    client = ZerorpcClient().get_state()
+
+    print(client)
+
+    status = client.get_status()
     return render_template('stats.html', data='test', status=status)
 
 
 @app.route('/live-data')
 def live_data():
     # Create a PHP array and echo it as JSON
-    print(client_object)
+    client = ZerorpcClient().get_state()
 
-    data = client_object.get_dyna_point()
+    print(client)
+
+    data = client.get_dyna_point()
 
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
