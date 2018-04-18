@@ -1,7 +1,7 @@
 import json
 from flask import Flask, render_template, flash, request, make_response
 from wtforms import Form, StringField, validators, StringField, SubmitField
-from zerorpc_client import ZerorpcClient
+from zerorpc_client import ZeroClient
 
 # App config.
 DEBUG = True
@@ -33,7 +33,7 @@ def hello():
             flash('Thanks for the registration of ' + name)
             # We now write the data to the Data container
 
-            client = ZerorpcClient().get_state()
+            client = ZeroClient().getInstance()
 
             print(client.write_to_yaml(azure_id, connection_string))
         else:
@@ -45,7 +45,7 @@ def hello():
 
 @app.route("/stats")
 def stats():
-    client = ZerorpcClient().get_state()
+    client = ZeroClient().getInstance()
 
     print(client)
 
@@ -56,7 +56,7 @@ def stats():
 @app.route('/live-data')
 def live_data():
     # Create a PHP array and echo it as JSON
-    client = ZerorpcClient().get_state()
+    client = ZeroClient().getInstance()
 
     print(client)
 
