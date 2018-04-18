@@ -3,6 +3,7 @@ from time import time
 from random import random
 from flask import Flask, render_template, flash, request, make_response
 from wtforms import Form, StringField, validators, StringField, SubmitField
+import zerorpc
 
 # App config.
 DEBUG = True
@@ -16,6 +17,18 @@ class ReusableForm(Form):
     azure_id = StringField('azure_id', validators=[validators.required(), validators.Length(min=6, max=35)])
     connection_string = StringField('connection_string',
                                     validators=[validators.required(), validators.Length(min=3, max=35)])
+
+
+class ZerorpcClient:
+    def get_client(self):
+        client = zerorpc.Client()
+        client.connect("tcp://data:4242")  # "data" is the containers name
+
+        return client
+
+
+client_object = ZerorpcClient()
+client = client_object.get_client()
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -33,11 +46,8 @@ def hello():
             # Save the comment here.
             flash('Thanks for the registration of ' + name)
             # We now write the data to the Data container
-            import zerorpc
 
-            c = zerorpc.Client()
-            c.connect("tcp://data:4242")  # "data" is the containers name
-            print(c.write_to_yaml(azure_id, connection_string))
+            print(client.write_to_yaml(azure_id, connection_string))
         else:
             print(form.errors)
             flash('Error: All the form fields are required. ')
@@ -47,22 +57,17 @@ def hello():
 
 @app.route("/stats")
 def stats():
-    import zerorpc
-
-    c = zerorpc.Client()
-    c.connect("tcp://data:4242")
-    status = c.get_status()
+    status = client.get_status()
     return render_template('stats.html', data='test', status=status)
 
 
 @app.route('/live-data')
 def live_data():
     # Create a PHP array and echo it as JSON
-    import zerorpc
 
-    c = zerorpc.Client()
-    c.connect("tcp://data:4242")
-    data = c.get_dyna_point()
+    data = client.get_dyna_point()
+
+    print('client id {0}'.format(client))
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
     return response
