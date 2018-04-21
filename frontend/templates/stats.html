@@ -26,20 +26,22 @@
 <h2> Stats </h2>
 
 
-<div id="status">
+<div id="status_container">
     <form class="status-refresh-form" role="form">
 
         <button class="btn btn-lg btn-primary btn-block" type="button">Refresh</button>
 
     </form>
-    <ul>
-        <li>Well Status: {{status.well_status}}</li>
-        <li>Automatic: {{status.automatic}}</li>
-        <li>Percent Fillage: {{status.percent_fillage}}%</li>
-        <li>Run Time: {{status.run_time}}%</li>
-        <li>Strokes this Cycle: {{status.strokes_this}}</li>
-        <li>Strokes last cycle: {{status.strokes_last}}</li>
-    </ul>
+    <div id="status">
+        <ul>
+            <li>Well Status: {{status.well_status}}</li>
+            <li>Automatic: {{status.automatic}}</li>
+            <li>Percent Fillage: {{status.percent_fillage}}%</li>
+            <li>Run Time: {{status.run_time}}%</li>
+            <li>Strokes this Cycle: {{status.strokes_this}}</li>
+            <li>Strokes last cycle: {{status.strokes_last}}</li>
+        </ul>
+    </div>
 
 </div>
 

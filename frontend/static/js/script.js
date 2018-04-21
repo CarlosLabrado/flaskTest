@@ -12,18 +12,14 @@ $(function () {
                 var json_obj = $.parseJSON(response);
 
                 console.log(json_obj);
-                console.log(json_obj[0]);
 
-                // var output="<ul>";
-                for (var i in json_obj) {
-                    $("#list").append("<li>" + json_obj[i].well_status + " : " + json_obj.automatic + "</li>");
-                }
-                // output+="</ul>";
+                $("#list").append("<li>" + "Well Status : " + json_obj.well_status + "</li>")
+                    .append("<li>" + "Automatic : " + json_obj.automatic + "</li>")
+                    .append("<li>" + "Percent Fillage : " + json_obj.percent_fillage + "</li>")
+                    .append("<li>" + "Run Time : " + json_obj.run_time + "</li>")
+                    .append("<li>" + "Strokes This Cycle : " + json_obj.strokes_this + "</li>")
+                    .append("<li>" + "Strokes Last Cycle : " + json_obj.strokes_last + "</li>");
 
-                // $.each(json_obj, function(n, elem) {
-                //    $("#list").append("<li>" + elem.status + " : " + elem.user + "</li>");
-                // });
-                // $('span').html(output);
             },
             error: function (error) {
                 console.log(error);
