@@ -24,7 +24,14 @@
 <div id="container" style="min-width: 310px; height: 400px; max-width: 700px; margin: 0 auto"></div>
 
 <h2> Stats </h2>
-<div class="status">
+
+
+<div id="status">
+    <form class="status-refresh-form" role="form">
+
+        <button class="btn btn-lg btn-primary btn-block" type="button">Refresh</button>
+
+    </form>
     <ul>
         <li>Well Status: {{status.well_status}}</li>
         <li>Automatic: {{status.automatic}}</li>
@@ -44,6 +51,7 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
 <script src="/static/js/highcharts.js"></script>
+<script src="static/js/script.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

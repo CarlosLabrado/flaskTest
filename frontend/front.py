@@ -63,5 +63,13 @@ def live_data():
     return response
 
 
+@app.route('/refreshStatus', methods=['POST'])
+def refresh_status():
+    client = ZeroClient().get_instance().get_client()
+    status = client.get_status()
+
+    return json.dumps(status)
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True)
