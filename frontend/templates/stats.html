@@ -8,6 +8,8 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/mainpage.css') }}">
+    <link rel="stylesheet" media="screen" href="static/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bootstrap-theme.min.css">
 </head>
 <body>
 
@@ -34,6 +36,25 @@
             <li>Strokes last cycle: {{status.strokes_last}}</li>
         </ul>
     </div>
+
+</div>
+
+<div id="settings_container">
+    <h3>Settings</h3>
+    <form action="" method="post" role="form">
+        {{ form.csrf }}
+        <div class="form-group">
+            <label for="pump_off_strokes">Pump off Strokes:</label>
+            <input type="text" class="form-control" id="pump_off_strokes" name="pump_off_strokes"
+                   placeholder={{settings.pump_off_strokes}}>
+            <button type="submit" name="button_pump_off_strokes" value="button_pump_off_strokes">Update</button>
+            <br>
+            <label for="pump_up_strokes">Pump up Strokes:</label>
+            <input type="text" class="form-control" id="pump_up_strokes" name="pump_up_strokes" placeholder="1XXXXX"
+                   value={{settings.pump_up_strokes}}>
+            <button type="submit" name="button_pump_up_strokes" value="button_pump_up_strokes">Update</button>
+        </div>
+    </form>
 
 </div>
 <!--script libraries-->

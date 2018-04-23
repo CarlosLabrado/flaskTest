@@ -43,12 +43,17 @@ def hello():
     return render_template('hello.html', form=form)
 
 
-@app.route("/stats")
+@app.route("/stats", methods=['GET', 'POST'])
 def stats():
+    if "button_pump_off_strokes" in request.form:
+        pump_off_strokes = request.form['pump_off_strokes']
+        print(pump_off_strokes)
     client = ZeroClient().get_instance().get_client()
 
     status = client.get_status()
-    return render_template('stats.html', data='test', status=status)
+    settings = client.get_settings()
+
+    return render_template('stats.html', data='test', status=status, settings=settings)
 
 
 @app.route('/live-data')

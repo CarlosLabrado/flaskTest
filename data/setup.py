@@ -32,6 +32,12 @@ class Setup(object):
                   'strokes_last': int(random() * 10)}
         return status
 
+    def get_settings(self):
+        settings = {'pump_off_strokes': int(random() * 10),
+                    'pump_up_strokes': int(random() * 10),
+                    }
+        return settings
+
 
 s = zerorpc.Server(Setup())
 s.bind("tcp://0.0.0.0:4242")
