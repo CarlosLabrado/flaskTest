@@ -38,6 +38,9 @@ class Setup(object):
                     }
         return settings
 
+    def update_settings(self, new_settings):
+        print(new_settings)
+
 
 s = zerorpc.Server(Setup())
 s.bind("tcp://0.0.0.0:4242")

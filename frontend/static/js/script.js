@@ -1,8 +1,8 @@
 $(function () {
-    $('button').click(function () {
+    $("#refresh_stats").click(function () {
         $.ajax({
             url: '/refreshStatus',
-            data: $('form').serialize(),
+            data: $("#status_form").serialize(),
             type: 'POST',
             success: function (response) {
                 console.log(response);
@@ -26,4 +26,16 @@ $(function () {
             }
         });
     });
+    $("#update_settings").click(function () {
+        $.ajax({
+            url: '/updateSettings',
+            data: $("#settings_form").serialize(),
+            contentType: 'application/json;charset=UTF-8',
+            type: 'POST',
+            success: function (data) {
+                console.log(data)
+
+            }
+        });
+    })
 });

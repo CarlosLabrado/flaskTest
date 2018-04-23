@@ -45,9 +45,6 @@ def hello():
 
 @app.route("/stats", methods=['GET', 'POST'])
 def stats():
-    if "button_pump_off_strokes" in request.form:
-        pump_off_strokes = request.form['pump_off_strokes']
-        print(pump_off_strokes)
     client = ZeroClient().get_instance().get_client()
 
     status = client.get_status()
@@ -74,6 +71,18 @@ def refresh_status():
     status = client.get_status()
 
     return json.dumps(status)
+
+
+@app.route('/updateSettings', methods=['POST'])
+def update_settings():
+    settings = None
+    if request.method == "POST":
+        settings = request.data
+
+    client = ZeroClient().get_instance().get_client()
+    client.update_settings(settings)
+
+    return ""
 
 
 if __name__ == "__main__":

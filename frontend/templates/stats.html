@@ -17,13 +17,13 @@
 <!--Plot container-->
 <div id="container" style="min-width: 310px; height: 400px; max-width: 700px; margin: 0 auto"></div>
 
-<h2> Stats </h2>
-
 
 <div id="status_container">
-    <form class="status-refresh-form" role="form">
+    <h3> Stats </h3>
 
-        <button class="btn btn-lg btn-primary btn-block" type="button">Refresh</button>
+    <form id=status_form" class="status-refresh-form" role="form">
+
+        <button class="btn btn-lg btn-primary btn-block" type="button" id="refresh_stats">Refresh</button>
 
     </form>
     <div id="status">
@@ -41,20 +41,19 @@
 
 <div id="settings_container">
     <h3>Settings</h3>
-    <form action="" method="post" role="form">
+
+    <form id="settings_form" action="" method="post" role="form">
         <div class="form-group">
             <label for="pump_off_strokes">Pump off Strokes:</label>
             <input type="text" class="form-control" id="pump_off_strokes" name="pump_off_strokes"
-                   placeholder={{settings.pump_off_strokes}}>
-            <button type="submit" name="button_pump_off_strokes" value="button_pump_off_strokes">Update</button>
+                   value={{settings.pump_off_strokes}}>
             <br>
             <label for="pump_up_strokes">Pump up Strokes:</label>
-            <input type="text" class="form-control" id="pump_up_strokes" name="pump_up_strokes" placeholder="1XXXXX"
+            <input type="text" class="form-control" id="pump_up_strokes" name="pump_up_strokes"
                    value={{settings.pump_up_strokes}}>
-            <button type="submit" name="button_pump_up_strokes" value="button_pump_up_strokes">Update</button>
         </div>
     </form>
-
+    <button class="btn btn-lg btn-primary" type="button" id="update_settings">Update Settings</button>
 </div>
 <!--script libraries-->
 <script src="static/js/jquery-3.3.1.min.js"></script>
