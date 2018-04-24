@@ -30,7 +30,7 @@ $(function () {
         $.ajax({
             url: '/updateSettings',
             data: $("#settings_form").serialize(),
-            contentType: 'application/json;charset=UTF-8',
+            dataType: 'json',
             type: 'POST',
             success: function (data) {
                 console.log(data)

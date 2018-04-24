@@ -77,10 +77,13 @@ def refresh_status():
 def update_settings():
     settings = None
     if request.method == "POST":
-        settings = request.data
+        settings = json.dumps(request.values.dicts[1])
+        json_settings = json.loads(settings)
+
+        print(json_settings)
 
     client = ZeroClient().get_instance().get_client()
-    client.update_settings(settings)
+    client.update_settings(json_settings)
 
     return ""
 

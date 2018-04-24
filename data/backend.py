@@ -1,6 +1,7 @@
 import yaml
 import zerorpc
 from random import random
+import arrow
 
 
 class Setup(object):
@@ -29,12 +30,21 @@ class Setup(object):
                   'percent_fillage': int(random() * 100),
                   'run_time': int(random() * 100),
                   'strokes_this': int(random() * 1000),
-                  'strokes_last': int(random() * 10)}
+                  'strokes_last': int(random() * 10)
+                  }
         return status
 
     def get_settings(self):
+        utc = arrow.utcnow()
+        local = utc.to('US/Central')
+
         settings = {'pump_off_strokes': int(random() * 10),
                     'pump_up_strokes': int(random() * 10),
+                    'clock_date': local.format('YYYY-MM-DD'),
+                    'clock_time': local.format('HH:mm'),
+                    'fillage_setting': int(random() * 90),
+                    'auto_time_out': True,
+                    'time_out': "00:20"
                     }
         return settings
 

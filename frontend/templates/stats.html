@@ -45,12 +45,27 @@
     <form id="settings_form" action="" method="post" role="form">
         <div class="form-group">
             <label for="pump_off_strokes">Pump off Strokes:</label>
-            <input type="text" class="form-control" id="pump_off_strokes" name="pump_off_strokes"
+            <input type="number" class="form-control" id="pump_off_strokes" name="pump_off_strokes"
                    value={{settings.pump_off_strokes}}>
             <br>
             <label for="pump_up_strokes">Pump up Strokes:</label>
-            <input type="text" class="form-control" id="pump_up_strokes" name="pump_up_strokes"
+            <input type="number" class="form-control" id="pump_up_strokes" name="pump_up_strokes"
                    value={{settings.pump_up_strokes}}>
+            <br>
+            <label for="clock_date">Clock Date:</label>
+            <input type="date" class="form-control" id="clock_date" name="clock_date"
+                   value={{settings.clock_date}}>
+            <label for="clock_time">Clock Time:</label>
+            <input type="time" class="form-control" id="clock_time" name="clock_time"
+                   value={{settings.clock_time}}>
+            <br>
+            <label for="fillage_setting">Fillage Setting:</label>
+            <input type="number" class="form-control" id="fillage_setting" name="fillage_setting"
+                   value={{settings.fillage_setting}}>
+            <br>
+            <label for="time_out">Time Out:</label>
+            <input type="time" class="form-control" id="time_out" name="time_out"
+                   value={{settings.time_out}}>
         </div>
     </form>
     <button class="btn btn-lg btn-primary" type="button" id="update_settings">Update Settings</button>
