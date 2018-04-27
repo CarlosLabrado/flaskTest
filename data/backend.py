@@ -20,14 +20,14 @@ class Setup(object):
                 yaml_file.write(yaml.safe_dump(settings, default_flow_style=False))
             print('setup: successful on boarding process')
     except Exception as e:
-        raise Exception(e)
+        print("write to yaml backend error {0}".format(e))
 
     def get_dyna_point(self):
         try:
             data = [random() * 100, random() * 100]
             return data
         except Exception as e:
-            raise Exception(e)
+            print("Get dyna point backend error {0}".format(e))
 
     def get_status(self):
         try:
@@ -40,7 +40,7 @@ class Setup(object):
                       }
             return status
         except Exception as e:
-            raise Exception(e)
+            print("Get status backend error {0}".format(e))
 
     def get_settings(self):
         try:
@@ -57,13 +57,13 @@ class Setup(object):
                         }
             return settings
         except Exception as e:
-            raise Exception(e)
+            print("Get settings backend error {0}".format(e))
 
     def update_settings(self, new_settings):
         try:
             print(new_settings)
         except Exception as e:
-            raise Exception(e)
+            print("update settings backend error {0}".format(e))
 
 
 s = zerorpc.Server(Setup())
