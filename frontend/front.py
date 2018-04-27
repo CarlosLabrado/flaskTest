@@ -1,6 +1,3 @@
-from gevent import monkey
-
-monkey.patch_all()
 import json
 from flask import Flask, render_template, flash, request, make_response
 from wtforms import Form, StringField, validators, StringField, SubmitField
@@ -36,9 +33,12 @@ def hello():
             flash('Thanks for the registration of ' + name)
             # We now write the data to the Data container
 
-            client = ZeroClient().get_instance().get_client()
+            try:
+                client = ZeroClient().get_instance().get_client()
 
-            print(client.write_to_yaml(azure_id, connection_string))
+                print(client.write_to_yaml(azure_id, connection_string))
+            except Exception as e:
+                print("There's a problem writing yaml {0}".format(e))
         else:
             print(form.errors)
             flash('Error: All the form fields are required. ')
@@ -48,47 +48,59 @@ def hello():
 
 @app.route("/stats", methods=['GET', 'POST'])
 def stats():
-    client = ZeroClient().get_instance().get_client()
+    try:
+        client = ZeroClient().get_instance().get_client()
 
-    status = client.get_status()
-    settings = client.get_settings()
+        status = client.get_status()
+        settings = client.get_settings()
 
-    return render_template('stats.html', data='test', status=status, settings=settings)
+        return render_template('stats.html', data='test', status=status, settings=settings)
+    except Exception as e:
+        print("There's a problem getting stats {0}".format(e))
 
 
 @app.route('/live-data')
 def live_data():
-    # Create a PHP array and echo it as JSON
-    client = ZeroClient().get_instance().get_client()
+    try:
+        # Create a PHP array and echo it as JSON
+        client = ZeroClient().get_instance().get_client()
 
-    data = client.get_dyna_point()
+        data = client.get_dyna_point()
 
-    response = make_response(json.dumps(data))
-    response.content_type = 'application/json'
-    return response
+        response = make_response(json.dumps(data))
+        response.content_type = 'application/json'
+        return response
+    except Exception as e:
+        print("There's a problem getting live data {0}".format(e))
 
 
 @app.route('/refreshStatus', methods=['POST'])
 def refresh_status():
-    client = ZeroClient().get_instance().get_client()
-    status = client.get_status()
+    try:
+        client = ZeroClient().get_instance().get_client()
+        status = client.get_status()
 
-    return json.dumps(status)
+        return json.dumps(status)
+    except Exception as e:
+        print("There's a problem getting refreshed Status {0}".format(e))
 
 
 @app.route('/updateSettings', methods=['POST'])
 def update_settings():
-    json_settings = None
-    if request.method == "POST":
-        settings = json.dumps(request.values.dicts[1])
-        json_settings = json.loads(settings)
+    try:
+        json_settings = None
+        if request.method == "POST":
+            settings = json.dumps(request.values.dicts[1])
+            json_settings = json.loads(settings)
 
-        print(json_settings)
+            print(json_settings)
 
-    client = ZeroClient().get_instance().get_client()
-    client.update_settings(json_settings)
+        client = ZeroClient().get_instance().get_client()
+        client.update_settings(json_settings)
 
-    return ""
+        return ""
+    except Exception as e:
+        print("There's a problem getting updated settings {0}".format(e))
 
 
 if __name__ == "__main__":
