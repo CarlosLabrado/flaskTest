@@ -1,3 +1,6 @@
+from gevent import monkey
+
+monkey.patch_all()
 import json
 from flask import Flask, render_template, flash, request, make_response
 from wtforms import Form, StringField, validators, StringField, SubmitField

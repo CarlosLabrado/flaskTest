@@ -19,7 +19,8 @@ class ZeroClient:
         if ZeroClient.__instance is None:
             ZeroClient.__instance = self
             self.c = zerorpc.Client()
-            self.c.connect("tcp://data:4242")  # "data" is the containers name
+            # self.c.connect("tcp://data:4242")  # "data" is the containers name
+            self.c.connect("tcp://0.0.0.0:4242")  # "data" is the containers name
 
     def get_client(self):
         return self.c
