@@ -48,19 +48,22 @@ def hello():
 
 @app.route("/stats", methods=['GET', 'POST'])
 def stats():
+    status = None
+    settings = None
     try:
         client = ZeroClient().get_instance().get_client()
 
         status = client.get_status()
         settings = client.get_settings()
-
-        return render_template('stats.html', data='test', status=status, settings=settings)
     except Exception as e:
         print("There's a problem getting stats {0}".format(e))
+
+    return render_template('stats.html', data='test', status=status, settings=settings)
 
 
 @app.route('/live-data')
 def live_data():
+    response = None
     try:
         # Create a PHP array and echo it as JSON
         client = ZeroClient().get_instance().get_client()
@@ -69,20 +72,21 @@ def live_data():
 
         response = make_response(json.dumps(data))
         response.content_type = 'application/json'
-        return response
     except Exception as e:
         print("There's a problem getting live data {0}".format(e))
+    return response
 
 
 @app.route('/refreshStatus', methods=['POST'])
 def refresh_status():
+    status = None
     try:
         client = ZeroClient().get_instance().get_client()
         status = client.get_status()
 
-        return json.dumps(status)
     except Exception as e:
         print("There's a problem getting refreshed Status {0}".format(e))
+    return json.dumps(status)
 
 
 @app.route('/updateSettings', methods=['POST'])
@@ -98,9 +102,9 @@ def update_settings():
         client = ZeroClient().get_instance().get_client()
         client.update_settings(json_settings)
 
-        return ""
     except Exception as e:
         print("There's a problem getting updated settings {0}".format(e))
+    return ""
 
 
 if __name__ == "__main__":
