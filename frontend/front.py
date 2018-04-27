@@ -75,7 +75,7 @@ def refresh_status():
 
 @app.route('/updateSettings', methods=['POST'])
 def update_settings():
-    settings = None
+    json_settings = None
     if request.method == "POST":
         settings = json.dumps(request.values.dicts[1])
         json_settings = json.loads(settings)
