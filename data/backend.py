@@ -5,8 +5,8 @@ import arrow
 
 
 class Setup(object):
-    try:
-        def write_to_yaml(self, new_id, new_connection_string):
+    def write_to_yaml(self, new_id, new_connection_string):
+        try:
             file_name = '/data/env_vars.yaml'
 
             stream = open(file_name, 'r')
@@ -19,8 +19,8 @@ class Setup(object):
             with open(file_name, 'w') as yaml_file:
                 yaml_file.write(yaml.safe_dump(settings, default_flow_style=False))
             print('setup: successful on boarding process')
-    except Exception as e:
-        print("write to yaml backend error {0}".format(e))
+        except Exception as e:
+            print("write to yaml backend error {0}".format(e))
 
     def get_dyna_point(self):
         try:

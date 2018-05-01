@@ -17,7 +17,7 @@ class ReusableForm(Form):
                                     validators=[validators.required(), validators.Length(min=3, max=35)])
 
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/setup", methods=['GET', 'POST'])
 def hello():
     form = ReusableForm(request.form)
 
@@ -43,10 +43,10 @@ def hello():
             print(form.errors)
             flash('Error: All the form fields are required. ')
 
-    return render_template('hello.html', form=form)
+    return render_template('setup.html', form=form)
 
 
-@app.route("/stats", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def stats():
     status = None
     settings = None
@@ -108,4 +108,6 @@ def update_settings():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run()
+
+    # app.run(host='0.0.0.0', port=80, debug=True)
