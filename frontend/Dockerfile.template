@@ -1,4 +1,4 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-python:3.5
+FROM resin/%%RESIN_MACHINE_NAME%%-python:3
 # Defines our working directory in container
 WORKDIR /usr/src/app
 
@@ -7,7 +7,7 @@ RUN pip install --upgrade pip
 
 # Install required Python packages
 RUN pip install -U \
- Flask \
+ -Iv Flask==0.12.4 \
  Flask-WTF \
  zerorpc
 
