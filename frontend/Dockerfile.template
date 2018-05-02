@@ -2,6 +2,11 @@ FROM resin/%%RESIN_MACHINE_NAME%%-python:3
 # Defines our working directory in container
 WORKDIR /usr/src/app
 
+RUN apt-get update && \
+	apt-get install network-manager && \
+    apt-get install dnsmasq && \
+	systemctl mask NetworkManager.service
+
 # Install required Python packages
 RUN pip install --upgrade pip
 
@@ -10,6 +15,8 @@ RUN pip install -U \
  -Iv Flask==0.12.4 \
  Flask-WTF \
  zerorpc
+
+CMD ["./nmcli", "connection", "up", "resin-ap"]
 
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
