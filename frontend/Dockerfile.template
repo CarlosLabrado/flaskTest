@@ -1,13 +1,13 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-python:3
-# Defines our working directory in container
-WORKDIR /usr/src/app
 
-RUN apt-get update \
-    && apt-get install -y dnsmasq wireless-tools \
-    network-manager \
-    && apt-get clean \
-    systemctl mask NetworkManager.service \
-&& rm -rf /var/lib/apt/lists/*
+ENV INITSYSTEM on
+
+RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list
+
+RUN apt-get update && apt-get -t stretch-backports install -yq \
+	network-manager && \
+	apt-get clean && rm -rf /var/lib/apt/lists/* && \
+systemctl mask NetworkManager.service
 
 # Install required Python packages
 RUN pip install --upgrade pip
@@ -22,7 +22,8 @@ RUN pip install -U \
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
 
-CMD ["./nmcli", "connection", "up", "petrologap"]
+# Defines our working directory in container
+WORKDIR /usr/src/app
 
 # server.js will run when container starts up on the device
 CMD ["bash", "front.sh"]
