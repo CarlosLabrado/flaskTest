@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
-sleep 10
+export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 
 echo try to run ap
+
+# 2. Is there Internet connectivity?
+nmcli -t g | grep full
+
 nmcli connection up petrologap
 echo running ap
 
