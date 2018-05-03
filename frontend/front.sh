@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+sleep 10
 
 echo try to run ap
 nmcli connection up petrologap
