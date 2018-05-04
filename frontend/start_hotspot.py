@@ -34,7 +34,7 @@ s_con = dbus.Dictionary({
     'id': 'resin-hotspot'})
 
 s_wifi = dbus.Dictionary({
-    'ssid': dbus.ByteArray("resin-hotspot"),
+    'ssid': dbus.ByteArray("resin-hotspot".encode()),
     'mode': "ap",
     'band': "bg",
     'channel': dbus.UInt32(1)})
