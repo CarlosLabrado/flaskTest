@@ -3,12 +3,18 @@ services:
   frontend:
     container_name: frontend
     build: ./frontend
+    network_mode: "host"
     privileged: true
+    labels:
+      io.resin.features.dbus: '1'
     ports:
       - "80:80"
   data:
     container_name: data
     build: ./data
+    network_mode: "host"
+    depends_on:
+      - frontend
     ports:
       - "4242:4242"
 

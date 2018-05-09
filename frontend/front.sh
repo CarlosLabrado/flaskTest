@@ -1,10 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-echo trying to export address
-export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+#start wifi connect
+echo starting wifi connect
+./wifi-connect --portal-listening-port 45454
 
-echo activate connection first
-python /usr/src/app/activate_connection.py
-
-echo ..... start.sh: Running main app ....
+#start main app
+echo .... Running main app ....
 python /usr/src/app/front.py
