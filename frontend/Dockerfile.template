@@ -1,11 +1,5 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-python:3.4
 
-RUN apt-get update \
-    && apt-get install -y dnsmasq wireless-tools \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-
 # Install required Python packages
 RUN pip install --upgrade pip
 
@@ -13,19 +7,13 @@ RUN pip install --upgrade pip
 RUN pip install -U \
  -Iv Flask==0.12.4 \
  Flask-WTF \
- python-networkmanager \
  zerorpc
 
 # Defines our working directory in container
 WORKDIR /usr/src/app
 
-RUN curl -Ls https://github.com/resin-io/resin-wifi-connect/releases/download/v4.1.1/wifi-connect-v4.1.1-linux-%%RESIN_ARCH%%.tar.gz \
-    | tar -xvz -C /usr/src/app/
-
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
-
-ENV DBUS_SYSTEM_BUS_ADDRESS unix:path=/host/run/dbus/system_bus_socket
 
 # server.js will run when container starts up on the device
 CMD ["bash", "front.sh"]
