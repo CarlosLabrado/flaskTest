@@ -16,8 +16,7 @@ services:
   wifi-connect:
       build: ./wifi-connect
       privileged: true
+      network_mode: "host"
       labels:
         io.resin.features.dbus: '1'
-      ports:
-      - "45454:45454"
 
