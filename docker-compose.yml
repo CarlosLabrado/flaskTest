@@ -18,4 +18,6 @@ services:
       privileged: true
       labels:
         io.resin.features.dbus: '1'
+      ports:
+      - "45454:45454"
 
