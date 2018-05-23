@@ -3,6 +3,10 @@ FROM resin/%%RESIN_MACHINE_NAME%%-python:3.4
 # Defines our working directory in container
 WORKDIR /usr/src/app
 
+RUN     apt-get update \
+     && apt-get install \
+python3-dbus
+
 # Install required Python packages
 RUN pip install --upgrade pip
 
@@ -16,6 +20,8 @@ RUN pip install -U \
 COPY . ./
 
 COPY env_vars.yaml /data/env_vars.yaml
+
+ENV DBUS_SYSTEM_BUS_ADDRESS unix:path=/host/run/dbus/system_bus_socket
 
 # server.js will run when container starts up on the device
 CMD ["python", "backend.py"]

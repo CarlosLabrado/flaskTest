@@ -62,6 +62,8 @@ class Setup(object):
     def update_settings(self, new_settings):
         try:
             print(new_settings)
+            from dbus_commands import DBUSCommands
+            dbus_obj = DBUSCommands()
         except Exception as e:
             print("update settings backend error {0}".format(e))
 
